@@ -1,4 +1,4 @@
-# UnitConverter-byAastha
+#CodeClause_UnitConverter_Aastha
 A website where we can convert various units such as - Temperature,Power,Currency,length,Area,Volume,Weight,speed,Pressure .I have made this using HTML ,CSS and Javascript.
 
 Main file of my project is "Converter.html"
