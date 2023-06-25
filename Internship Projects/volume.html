@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>volume</title>
+    <link rel="stylesheet" type="text/css" href="Converter.css">
+    <style>
+		body{
+    		background: repeating-linear-gradient(90deg,rgb(244, 240, 240),rgb(248, 149, 149));
+    		height: 100vh;
+    		width: 100%;
+		}
+	</style>
+</head>
+<body>
+    <a href="bottom.html"><img src="home1.png" id="home"><br>Home</a>
+      <div class="container">
+      <h2>Volume Converter</h2>
+      <div id="box">
+        <form>
+            <div id="input">
+                <div class="From">
+                    <pre>From :</pre>
+                </div>
+                <div class="dropDown">
+                    <select id="fromUnit">
+                        <option value="in">Inches</option>
+                        <option value="cm">Centimeters</option>
+                        <option value="ft">Feet</option>
+                        <option value="m">Meters</option>
+                    </select>
+                </div>
+                <div class="write">
+                    <input type="number" id="inputValue" placeholder="enter the number you want to convert">
+                </div>
+            </div>
+            <div id="output">
+                <div class="From">
+                    <pre>To :     </pre>
+                </div>
+                <div class="dropDown">
+                    <select id="toUnit">
+                        <option value="in">Inches</option>
+                        <option value="cm">Centimeters</option>
+                        <option value="ft">Feet</option>
+                        <option value="me">Meters</option>
+                    </select>
+                </div>
+                <div class="write">
+                    <input type="text" id="result" class="answer" placeholder="result">
+                </div>
+            </div>
+            <div>
+                <button class="button" onclick="convert(event)">Convert</button>
+            </div>            
+          </form>
+      </div>
+
+    <script type="text/javascript">
+        function convert(event) 
+        {
+            event.preventDefault();
+
+			const inputValue = parseFloat(document.getElementById('inputValue').value);
+			const fromUnit = document.getElementById('fromUnit').value;
+			const toUnit = document.getElementById('toUnit').value;
+			let result;
+
+			if (fromUnit === toUnit) {
+				result = inputValue;
+			} else if (fromUnit === 'cm' && toUnit === 'm') {
+				result = inputValue / 100;
+			} else if (fromUnit === 'cm' && toUnit === 'ft') {
+				result = inputValue * 0.0328084;
+			} else if (fromUnit === 'cm' && toUnit === 'in') {
+				result = inputValue * 0.393701;
+			} else if (fromUnit === 'm' && toUnit === 'cm') {
+				result = inputValue * 100;
+			} else if (fromUnit === 'm' && toUnit === 'ft') {
+				result = inputValue * 3.28084;
+			} else if (fromUnit === 'm' && toUnit === 'in') {
+				result = inputValue * 39.3701;
+			} else if (fromUnit === 'ft' && toUnit === 'cm') {
+				result = inputValue / 0.0328084;
+			} else if (fromUnit === 'ft' && toUnit === 'm') {
+				result = inputValue / 3.28084;
+			} else if (fromUnit === 'ft' && toUnit === 'in') {
+				result = inputValue * 12;
+			} else if (fromUnit === 'in' && toUnit === 'cm') {
+				result = inputValue / 0.393701;
+			} else if (fromUnit === 'in' && toUnit === 'm') {
+				result = inputValue / 39.3701;
+			} else if (fromUnit === 'in' && toUnit === 'ft') {
+				result = inputValue / 12;
+			}
+
+            console.log(result);
+
+            var output=document.getElementById('result');
+            output.value = result.toFixed(2);
+        }
+    </script>
+</body>
+</html>

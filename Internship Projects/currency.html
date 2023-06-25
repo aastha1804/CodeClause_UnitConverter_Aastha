@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>currency</title>
+    <link rel="stylesheet" type="text/css" href="Converter.css">
+    <style>
+		body{
+    		background: repeating-linear-gradient(90deg,rgb(204, 228, 148),rgb(152, 213, 121));
+    		height: 100vh;
+    		width: 100%;
+		}
+	</style>
+</head>
+<body>
+    <a href="bottom.html"><img src="home1.png" id="home"><br>Home</a>
+      <div class="container">
+      <h2>Currency Converter</h2>
+      <div id="box">
+        <form>
+            <div id="input">
+                <div class="From">
+                    <pre>From :</pre>
+                </div>
+                <div class="dropDown">
+                <select id="fromCurrency">
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                </select>
+                </div>
+                <div class="write">
+                    <input type="number" id="inputValue" placeholder="amount">
+                </div>
+            </div>
+            <div id="output">
+                <div class="From">
+                    <pre>To :     </pre>
+                </div>
+                <div class="dropDown">
+                    <select id="toCurrency">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                    </select>
+                </div>
+                <div class="write">
+                    <input type="text" id="result" class="answer" placeholder="result">
+                </div>
+            </div>
+            <div>
+                <button class="button" onclick="convert(event)">Convert</button>
+            </div>            
+          </form>
+      </div>
+
+    <script type="text/javascript">
+    function convert(event) 
+    {
+        event.preventDefault();
+
+        const amount = parseFloat(document.getElementById('inputValue').value);
+        const fromCurrency = document.getElementById('fromCurrency').value;
+        const toCurrency = document.getElementById('toCurrency').value;
+        let result;
+
+        const conversionRates = {
+            USD: {
+                EUR: 0.84,
+                GBP: 0.72
+            },
+            EUR: {
+                USD: 1.19,
+                GBP: 0.86
+            },
+            GBP: {
+                USD: 1.39,
+                EUR: 1.16
+            }
+        };
+
+        if (fromCurrency === toCurrency) {
+            result = amount;
+        } 
+        else if (conversionRates[fromCurrency] && conversionRates[fromCurrency][toCurrency]) {
+            result = amount * conversionRates[fromCurrency][toCurrency];
+        } 
+        else {
+            result = 'Invalid conversion';
+        }
+
+        const output = document.getElementById('result');
+        output.value = result.toFixed(2);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>area</title>
+    <link rel="stylesheet" type="text/css" href="Converter.css">
+    <style>
+		body{
+    		background: repeating-linear-gradient(90deg,rgb(223, 125, 50),rgb(180, 76, 212));
+    		height: 100vh;
+    		width: 100%;
+		}
+	</style>
+</head>
+<body>
+    <a href="bottom.html"><img src="home1.png" id="home"><br>Home</a>
+      <div class="container">
+      <h2>Area Converter</h2>
+      <div id="box">
+        <form>
+            <div id="input">
+                <div class="From">
+                    <pre>From :</pre>
+                </div>
+                <div class="dropDown">
+                    <select id="fromUnit">
+                        <option value="square-inches">Square Inches</option>
+                        <option value="square-centimeters">Square Centimeters</option>
+                        <option value="square-feet">Square Feet</option>
+                        <option value="square-meters">Square Meters</option>
+                    </select>
+                </div>
+                <div class="write">
+                    <input type="number" id="inputValue" placeholder="enter the value">
+                </div>
+            </div>
+            <div id="output">
+                <div class="From">
+                    <pre>To :     </pre>
+                </div>
+                <div class="dropDown">
+                    <select id="toUnit">
+                        <option value="square-inches">Square Inches</option>
+                        <option value="square-centimeters">Square Centimeters</option>
+                        <option value="square-feet">Square Feet</option>
+                        <option value="square-meters">Square Meters</option>
+                    </select>
+                </div>
+                <div class="write">
+                    <input type="text" id="result" class="answer" placeholder="result">
+                </div>
+            </div>
+            <div>
+                <button class="button" onclick="convert(event)">Convert</button>
+            </div>            
+          </form>
+      </div>
+
+    <script type="text/javascript">
+        function convert(event) {
+			event.preventDefault();
+
+			const inputValue = parseFloat(document.getElementById('inputValue').value);
+			const fromUnit = document.getElementById('fromUnit').value;
+			const toUnit = document.getElementById('toUnit').value;
+			let result;
+
+			if (fromUnit === toUnit) {
+				result = inputValue;
+			} else if (fromUnit === 'square-meters' && toUnit === 'square-feet') {
+				result = inputValue * 10.7639;
+			} else if (fromUnit === 'square-meters' && toUnit === 'square-inches') {
+				result = inputValue * 1550.0031;
+			} else if (fromUnit === 'square-meters' && toUnit === 'square-centimeters') {
+				result = inputValue * 10000;
+			} else if (fromUnit === 'square-feet' && toUnit === 'square-meters') {
+				result = inputValue / 10.7639;
+			} else if (fromUnit === 'square-feet' && toUnit === 'square-inches') {
+				result = inputValue * 144;
+			} else if (fromUnit === 'square-feet' && toUnit === 'square-centimeters') {
+				result = inputValue * 929.0304;
+			} else if (fromUnit === 'square-inches' && toUnit === 'square-meters') {
+				result = inputValue / 1550.0031;
+			} else if (fromUnit === 'square-inches' && toUnit === 'square-feet') {
+				result = inputValue / 144;
+			} else if (fromUnit === 'square-inches' && toUnit === 'square-centimeters') {
+				result = inputValue * 6.4516;
+			} else if (fromUnit === 'square-centimeters' && toUnit === 'square-meters') {
+				result = inputValue / 10000;
+			} else if (fromUnit === 'square-centimeters' && toUnit === 'square-feet') {
+				result = inputValue / 929.0304;
+			} else if (fromUnit === 'square-centimeters' && toUnit === 'square-inches') {
+				result = inputValue / 6.4516;
+			}
+
+			var output = document.getElementById('result');
+			output.value = result.toFixed(2);
+		}
+    </script>
+</body>
+</html>
